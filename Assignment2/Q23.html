@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .slideshow-container {
+            max-width: 600px;
+            position: relative;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .slide {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.4);
+            border: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .caption {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="https://picsum.photos/id/10/600/300">
+            <div class="caption">Explore the Mountains</div>
+        </div>
+
+        <div class="slide">
+            <img src="https://picsum.photos/id/20/600/300">
+            <div class="caption">Modern Workspace</div>
+        </div>
+
+        <div class="slide">
+            <img src="https://picsum.photos/id/28/600/300">
+            <div class="caption">Deep in the Forest</div>
+        </div>
+
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+
+            if (n >= slides.length) {
+                slideIndex = 0;
+            }
+            if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndex].style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
